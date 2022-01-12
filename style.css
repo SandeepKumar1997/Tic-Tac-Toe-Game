@@ -1,0 +1,178 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cell-size: 100px;
+  --marking-size: calc(var(--cell-size) * 0.7);
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* creating board with the 9 cells */
+
+.board {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  height: var(--cell-size);
+  width: var(--cell-size);
+  border: 1px solid black;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:hover {
+  cursor: pointer;
+}
+
+.cell.x:hover,
+.cell.circle:hover {
+  cursor: not-allowed;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Removing the outer borders of the cell */
+
+.cell:first-child,
+:nth-child(2),
+:nth-child(3) {
+  border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.cell:last-child,
+:nth-child(8),
+:nth-child(7) {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Providing light hover effect on the empty cells */
+/* Creating X Mark */
+
+.cell.x::before,
+.cell.x:after,
+.cell.circle::before{
+ background-color:black;
+}
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+ background-color: lightgrey;
+}
+
+.cell.x::before,
+.cell.x:after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--marking-size) * 0.09);
+  height: var(--marking-size);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+
+/* Creating O mark */
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before ,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.circle::before ,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+  width: var(--marking-size);
+  height: var(--marking-size);
+ 
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+  width: calc(var(--marking-size) * 0.8);
+  height: calc(var(--marking-size) * 0.8);
+  background-color: rgb(255, 255, 255);
+}
+
+
+/* Winning message designing */
+
+.message{
+ display: none;
+ position: fixed;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background-color: hsl(0, 0%, 0%);
+ opacity: 0.9;
+ justify-content: center;
+ align-items: center;
+ color: white;
+ font-size: 3rem;
+ flex-direction: column;
+ 
+}
+
+.message button{
+ font-size: 2rem;
+ padding: 0.8rem 1rem;
+ background-color:white;
+ border-radius: 1rem;
+ cursor: pointer;
+ border: 2px solid black;
+ font-weight:bold;
+ transition: all 0.3s ease-in-out;
+}
+
+.message div{
+ padding: 2rem 0;
+}
+
+.message button:hover{
+ color: white;
+ background-color: black;
+ border: 2px solid white
+}
+
+.message.show{
+ display: flex;
+}
