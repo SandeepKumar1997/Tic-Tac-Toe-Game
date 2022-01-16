@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Tic Tac Toe</title>
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+ <link rel="stylesheet" href="tictacstyle.css">
+ <script src="tictacscript.js" defer></script>
+</head>
+
+<body>
+ <div class="board">
+
+  <!-- It will contain the restart feature and whose next turn it is -->
+  <div class="titlebar">
+   <div class="markers title-cells">
+    <i class="fas fa-times"></i>
+    <i class="far fa-circle"></i>
+   </div>
+   <div class="turn-show title-cells"></div>
+   <div class="restart title-cells">
+    <i class="fas fa-redo"></i>
+   </div>
+  </div>
+
+  <!-- It will contain all the cell for markers -->
+  <div class="board-cells circle" id="board-cells">
+   <div class="cell x" data-cell></div>
+   <div class="cell circle" data-cell></div>
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
+  </div>
+
+  <!-- It will show the scorecard -->
+  <div class="scorebar">
+   <div class="x-counter score"></div>
+   <div class="tie-counter score"></div>
+   <div class="o-counter score"></div>
+  </div>
+
+ </div>
+
+
+ <!-- ---------------------------------------------------------------------------- -->
+ <!-- It will show the display  message -->
+ <div class="message">
+  <div lost-won-message></div>
+  <div takes-the-round></div>
+  <div class="buttons">
+   <button id="quit">QUIT</button>
+   <button id="next-round">NEXT ROUND</button>
+  </div>
+ </div>
+
+</body>
+
+</html>
