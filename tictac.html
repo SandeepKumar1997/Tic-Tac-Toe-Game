@@ -22,16 +22,16 @@
     <i class="fas fa-times"></i>
     <i class="far fa-circle"></i>
    </div>
-   <div class="turn-show title-cells"></div>
-   <div class="restart title-cells">
+   <div class="turn-show title-cells" id="turn-show"></div>
+   <div class="restart title-cells" id="restart">
     <i class="fas fa-redo"></i>
    </div>
   </div>
 
   <!-- It will contain all the cell for markers -->
-  <div class="board-cells circle" id="board-cells">
-   <div class="cell x" data-cell></div>
-   <div class="cell circle" data-cell></div>
+  <div class="board-cells" id="board-cells">
+   <div class="cell" data-cell></div>
+   <div class="cell" data-cell></div>
    <div class="cell" data-cell></div>
    <div class="cell" data-cell></div>
    <div class="cell" data-cell></div>
@@ -43,9 +43,18 @@
 
   <!-- It will show the scorecard -->
   <div class="scorebar">
-   <div class="x-counter score"></div>
-   <div class="tie-counter score"></div>
-   <div class="o-counter score"></div>
+   <div class="x-counter score">
+    <span>X SCORE</span>
+    <span id="x-counter"></span>
+   </div>
+   <div class="tie-counter score">
+    <span>TIE SCORE</span>
+    <span id="tie-counter"></span>
+   </div>
+   <div class="o-counter score">
+    <span>O SCORE</span>
+    <span id="o-counter"></span>
+   </div>
   </div>
 
  </div>
@@ -53,7 +62,7 @@
 
  <!-- ---------------------------------------------------------------------------- -->
  <!-- It will show the display  message -->
- <div class="message">
+ <div class="message" id="message-text">
   <div lost-won-message></div>
   <div takes-the-round></div>
   <div class="buttons">

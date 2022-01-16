@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
 *,
 *::before,
 *::after {
@@ -23,6 +25,8 @@ body {
   --marking-size: calc(var(--cell-size) * 0.7);
 
   --clr-boxShadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.75);
+
+  --fs-font:'Dongle', sans-serif;
 }
 
 
@@ -101,6 +105,14 @@ body {
   background-color: var(--clr-cellColor);
   border-radius: 1rem;
   width: var(--cell-size);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-refreshCell);
+  font-weight: bolder;
+  font-family: var(--fs-font);
+  font-size: 1.5rem;
 }
 
 /* --------------------------------------------------------------------------------- */
@@ -226,14 +238,41 @@ body {
 
 .scorebar .x-counter {
   background-color: var(--clr-xMarker);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  font-family: var(--fs-font);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .scorebar .tie-counter {
   background-color: var(--clr-refreshCell);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  font-family: var(--fs-font);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .scorebar .o-counter {
   background-color: var(--clr-oMarker);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  font-family: var(--fs-font);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 /* -------Designing Message Display------------------------------ */
