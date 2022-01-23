@@ -30,7 +30,7 @@ body {
 }
 
 
-/* ----------------------Setting up the board-------------------------- */
+/* -----------------Setting up the board ad round title----------- */
 
 .board {
   height: 100vh;
@@ -42,6 +42,14 @@ body {
   justify-items: center;
   flex-direction: column;
   background-color: var(--clr-background);
+}
+
+.rounds{
+ color: var(--clr-xMarker);
+ font-size: 4rem;
+ font-weight: bold;
+ font-family: var(--fs-font);
+ padding: 1.5rem 0;
 }
 
 /* ---------------------------------------------------------------- */
@@ -65,7 +73,20 @@ body {
 }
 
 .titlebar .restart {
-  color: white;
+  color: var(--clr-refreshCell);
+  background-color: var(--clr-cellColor);
+  display: flex;
+  border-radius: 1rem;
+  width: 4rem;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  cursor: pointer;
+}
+
+.titlebar .restartNewGame {
+  color: var(--clr-cellColor);
   background-color: var(--clr-refreshCell);
   display: flex;
   border-radius: 1rem;
@@ -294,10 +315,11 @@ body {
 }
 
 .message button{
- font-size: 1rem;
- padding: 0.8rem 1rem;
+ font-size: 3rem;
+ width: 100%;
  border-radius: 1rem;
  cursor: pointer;
+ font-family: var(--fs-font);
  border: none;
  font-weight: bolder;
  transition: all 0.3s ease-in-out;
@@ -313,16 +335,15 @@ body {
 
 .message div{
  padding: 2rem 0;
+ font-family: var(--fs-font);
+ color: white;
 }
 
 #quit:hover{
  background-color: var(--clr-xMarkerLighten);
+ color: var(--clr-background);
 }
 
-#next-round:hover{
- background-color: var(--clr-oMarkerLighten);
- 
-}
 
 .message.show{
  display: flex;

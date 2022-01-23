@@ -14,8 +14,9 @@
 </head>
 
 <body>
+ 
  <div class="board">
-
+  <div class="rounds" id="rounds">Round Tracker</div>
   <!-- It will contain the restart feature and whose next turn it is -->
   <div class="titlebar">
    <div class="markers title-cells">
@@ -45,15 +46,15 @@
   <div class="scorebar">
    <div class="x-counter score">
     <span>X SCORE</span>
-    <span id="x-counter"></span>
+    <span class="score-count" id="x-counter"></span>
    </div>
    <div class="tie-counter score">
     <span>TIE SCORE</span>
-    <span id="tie-counter"></span>
+    <span class="score-count" id="tie-counter"></span>
    </div>
    <div class="o-counter score">
     <span>O SCORE</span>
-    <span id="o-counter"></span>
+    <span class="score-count" id="o-counter"></span>
    </div>
   </div>
 
@@ -66,8 +67,8 @@
   <div lost-won-message></div>
   <div takes-the-round></div>
   <div class="buttons">
-   <button id="quit">QUIT</button>
-   <button id="next-round">NEXT ROUND</button>
+   <button id="quit">RESTART</button>
+  
   </div>
  </div>
 

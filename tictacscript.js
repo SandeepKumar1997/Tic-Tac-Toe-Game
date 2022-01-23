@@ -1,5 +1,6 @@
 const whose_turn = document.getElementById("turn-show");
 const restart = document.getElementById("restart");
+const round_tracker=document.getElementById("rounds");
 
 const x_class = "x";
 const circle_class = "circle";
@@ -19,7 +20,6 @@ const messageBox = document.getElementById("message-text");
 const user_result_game_message = document.querySelector("[lost-won-message]");
 const who_took_the_game = document.querySelector("[takes-the-round]");
 const quitBtn = document.getElementById("quit");
-const nextRoundBtn = document.getElementById("next-round");
 
 const turn_array = [x_class, circle_class];
 let turn = turn_array[Math.floor(Math.random() * 2)];
@@ -27,7 +27,9 @@ let circleTurn;
 let x_point = 0;
 let o_point = 0;
 let tie_point = 0;
-let totalRounds=10;
+let currentRound=0;
+let totalRounds = 10;
+let totalScoreTracker = 0;
 const winning_combination = [
   [0, 1, 2],
   [3, 4, 5],
@@ -42,8 +44,22 @@ const winning_combination = [
 startGame();
 
 restart.addEventListener("click", startGame);
+quitBtn.addEventListener("click", () => {
+  messageBox.classList.remove("show");
+  resetPoint();
+  startGame();
+});
 
-
+function resetPoint() {
+  x_score.textContent = "";
+  o_score.textContent = "";
+  tie_score.textContent = "";
+  x_point = 0;
+  o_point = 0;
+  tie_point = 0;
+  totalScoreTracker = 0;
+  round_tracker.textContent=`Round Tracker`
+}
 
 function startGame() {
   if (turn === x_class) {
@@ -60,8 +76,10 @@ function startGame() {
     cellItems.removeEventListener("click", handleClick);
     cellItems.addEventListener("click", handleClick, { once: true });
   });
-
+  // messageBox.classList.remove('show');
   hoverBoard();
+  restart.classList.remove("restartNewGame");
+
 }
 
 function handleClick(e) {
@@ -72,8 +90,12 @@ function handleClick(e) {
   if (checkWin(currentClass)) {
     checkWhoWon(currentClass);
     startGame();
+    round_tracker.textContent=`${currentRound+=1} Round completed`
   } else if (isdraw()) {
     endGame(true);
+    checkMessage();
+    round_tracker.textContent=`${currentRound+=1} Round completed`
+    restart.classList.add("restartNewGame");
   } else {
     swapMarker();
     hoverBoard();
@@ -83,6 +105,7 @@ function handleClick(e) {
 function endGame(draw) {
   if (draw) {
     tie_point = tie_point + 1;
+    totalScoreTracker = totalScoreTracker + 1;
     tie_score.textContent = tie_point;
   }
 }
@@ -90,11 +113,15 @@ function endGame(draw) {
 function checkWhoWon(currentClass) {
   if (currentClass === x_class) {
     x_point = x_point + 1;
+    totalScoreTracker = totalScoreTracker + 1;
     x_score.textContent = x_point;
   } else {
     o_point = o_point + 1;
+    totalScoreTracker = totalScoreTracker + 1;
     o_score.textContent = o_point;
   }
+  // console.log(totalScoreTracker)
+  checkMessage();
 }
 
 function isdraw() {
@@ -103,7 +130,9 @@ function isdraw() {
       items.classList.contains(x_class) ||
       items.classList.contains(circle_class)
     );
+    
   });
+ 
 }
 
 function placeMarker(cell, currentClass) {
@@ -134,4 +163,21 @@ function checkWin(currentClass) {
       return cell_items[index].classList.contains(currentClass);
     });
   });
+}
+
+function checkMessage() {
+  if (totalScoreTracker === totalRounds) {
+    if (tie_point === totalRounds || x_point === o_point) {
+      user_result_game_message.textContent = `Match is drawn between X and O with points X : ${x_point} and O : ${o_point}`;
+      messageBox.classList.add("show");
+    } else if (x_point > o_point || o_point === 0) {
+      user_result_game_message.textContent = `Congratulations !!! X won the match`;
+      who_took_the_game.textContent = `X took away the match with ${x_point} points`;
+      messageBox.classList.add("show");
+    } else {
+      user_result_game_message.textContent = `Congratulations !!! O won the match`;
+      who_took_the_game.textContent = `O took away the match with ${o_point} points`;
+      messageBox.classList.add("show");
+    }
+  }
 }
